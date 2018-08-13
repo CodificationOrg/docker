@@ -7,5 +7,5 @@ RUN sudo apt-get -y update \
 
 RUN sudo curl -O https://bootstrap.pypa.io/get-pip.py \
     && sudo python3.4 get-pip.py \
-    && sudo install awscli --upgrade \
+    && sudo pip install awscli --upgrade \
     && aws --version
