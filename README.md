@@ -1,2 +1,2 @@
-# docker
+# Docker
 Codification docker image configurations.
