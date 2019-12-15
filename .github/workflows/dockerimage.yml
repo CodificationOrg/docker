@@ -5,8 +5,11 @@ on:
     types: [published]
 
 jobs:
+  
   build:
     runs-on: ubuntu-latest
+    env:
+      image_name: 'docker.pkg.github.com/codificationorg/docker/ci-node-aws'
 
     steps:
     - uses: actions/checkout@v1
@@ -15,9 +18,6 @@ jobs:
     - name: Get the version
       id: vars
       run: echo ::set-output name=tag::$(echo ${GITHUB_REF:10})
-    - name: Set variables
-      env:
-        image_name: 'docker.pkg.github.com/codificationorg/docker/ci-node-aws'
     - name: Build the tagged Docker image
       run: docker build ./circleci/node -t ${image_name}:${{steps.vars.outputs.tag}}
     - name: Push the tagged Docker image
