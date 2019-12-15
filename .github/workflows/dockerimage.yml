@@ -11,7 +11,7 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: Login to Github Package Registry
-      run: docker login -u ${{ secrets.REGISTRY_USERNAME }} -p ${{secrets.REGISTRY_TOKEN}}
+      run: echo ${{ secrets.REGISTRY_TOKEN }} | docker login -u ${{ secrets.REGISTRY_USERNAME }} --password-stdin docker.pkg.github.com
     - name: Get the version
       id: vars
       run: echo ::set-output name=tag::$(echo ${GITHUB_REF:10})
