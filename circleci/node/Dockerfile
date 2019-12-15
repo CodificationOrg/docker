@@ -10,5 +10,5 @@ RUN sudo curl -O https://bootstrap.pypa.io/get-pip.py \
     && sudo pip install awscli --upgrade \
     && aws --version
 
-RUN sudo npm install -g npm@latest \
-    && npm --version
+RUN sudo apt-get -y yarn \
+  && yarn --version
