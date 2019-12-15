@@ -15,11 +15,14 @@ jobs:
     - name: Get the version
       id: vars
       run: echo ::set-output name=tag::$(echo ${GITHUB_REF:10})
+    - name: Set variables
+      env:
+        image_name: 'docker.pkg.github.com/codificationorg/docker/ci-node-aws'
     - name: Build the tagged Docker image
-      run: docker build ./circleci/node -t docker.pkg.github.com/${{github.repository}}/ci-node-aws:${{steps.vars.outputs.tag}}
+      run: docker build ./circleci/node -t ${image_name}:${{steps.vars.outputs.tag}}
     - name: Push the tagged Docker image
-      run: docker push docker.pkg.github.com/${{github.repository}}/ci-node-aws:${{steps.vars.outputs.tag}}
+      run: docker push ${image_name}:${{steps.vars.outputs.tag}}
     - name: Build the latest Docker image
-      run: docker build ./circleci/node -t docker.pkg.github.com/${{github.repository}}/ci-node-aws:latest
+      run: docker build ./circleci/node -t ${image_name}:latest
     - name: Push the latest Docker image
-      run: docker push docker.pkg.github.com/${{github.repository}}/ci-node-aws:latest
+      run: docker push ${image_name}:latest
