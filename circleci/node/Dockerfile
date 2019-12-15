@@ -1,4 +1,4 @@
-FROM circleci/node:8.11.1
+FROM circleci/node:10.17.0
 
 MAINTAINER William Weiss <william@codification.org>
 
